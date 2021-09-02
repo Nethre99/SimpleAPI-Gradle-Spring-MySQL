@@ -5,9 +5,7 @@ import com.ncbrains21.JarDemo.service.CustomerServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +28,19 @@ public class CustomerController {
         }
 
         return new ResponseEntity<List<CustomerEntity>>(customerEntityList, HttpStatus.OK);
+    }
+
+    @PostMapping("/addCustomer")
+    public ResponseEntity<CustomerEntity> setNewCustomer(@RequestBody CustomerEntity customer){
+        CustomerEntity customer1 = null;
+
+        try{
+            customer1 = customerServiceInterface.addCustomer(customer);
+
+        }catch(Exception e){
+            e.getMessage();
+        }
+
+        return new ResponseEntity<CustomerEntity>(customer1, HttpStatus.OK);
     }
 }
