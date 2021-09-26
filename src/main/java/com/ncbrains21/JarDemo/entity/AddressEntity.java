@@ -2,6 +2,7 @@ package com.ncbrains21.JarDemo.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,7 +27,7 @@ public class AddressEntity {
     private String state;
 
     @OneToMany(mappedBy = "address")
-    private Set recording = new HashSet<>();
+    private List<CustomerEntity> customerEntityList;
 
     public AddressEntity(int addressId, int zipCode, String street, String city, String state) {
         this.addressId = addressId;
